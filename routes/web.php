@@ -21,16 +21,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/dashboard', [ResultController::class,'index'])->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/store',[SubjectController::class,'store'])->name('store');
-    Route::get('/datatable',[SubjectController::class,'datatable'])->name('datatable');
+    Route::post('/student_store',[StudentController::class,'student_store'])->name('student_store');
+    Route::post('/result_store',[ResultController::class,'result_store'])->name('result_store');
+    Route::get('/datatable',[ResultController::class,'datatable'])->name('datatable');
 });
 
 require __DIR__.'/auth.php';

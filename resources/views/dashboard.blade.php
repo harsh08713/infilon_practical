@@ -52,77 +52,71 @@
                             data-target="#subjectModal">
                             Add Subject
                         </button>
+                        <button type="button" class="my-3 btn btn-primary" data-toggle="modal"
+                            data-target="#resultModal">
+                            Add Result
+                        </button>
                         <!-- start datatable student result details-->
 
                         <table class="table table-bordered" id="table">
                             <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Student Name</th>
-                                    <th>email</th>
-                                    <th>class</th>
-                                    <th>address</th>
+                                    <th>Student Id</th>
+                                    <th>Subject Id</th>
+                                    <th>class Id</th>
+                                    <th>Marks</th>
                                     <th>action</th>
                                 </tr>
                             </thead>
                         </table>
-                        <!-- end datatable employee leaves details-->
 
-                        <!-- start apply leave  modal -->
                         <div class="modal" id="studentModal">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <!-- Modal Header -->
+
                                     <div class="modal-header">
-                                        <h4 class="modal-title">Add Leave Type</h4>
+                                        <h4 class="modal-title">Add Student</h4>
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
 
                                     <!-- Modal body -->
-                                    <form id="applyleaveForm" method="POST" enctype="multipart/form-data">
+                                    <form id="addstudentModal" method="POST" enctype="multipart/form-data">
 
-                                        {{-- <input type="hidden" name="id" id="id"> --}}
+                                        <input type="hidden" name="id" id="id">
                                         <div class="modal-body">
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="employee_code">Employee Code:</label>
-                                                        <input type="text" name="employee_code" class="form-control "
-                                                            id="employee_code">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="from_date">From Date:</label>
-                                                        <input type="date" name="from_date" class="form-control date"
-                                                            id="from_date">
+                                                        <label for="name">Student Name:</label>
+                                                        <input type="text" name="name" class="form-control "
+                                                            id="name">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="to_date">To Date:</label>
-                                                        <input type="date" name="to_date" class="form-control date"
-                                                            id="to_date">
+                                                        <label for="email">Email:</label>
+                                                        <input type="email" name="email" class="form-control "
+                                                            id="email">
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="leave_type">Leave Type:</label>
-                                                    {{-- <select name="leave_type" id="leave_type">
-                                                        @foreach ($leaveType as $leave)
-                                                            <option value="{{ $leave->leavetype }}">
-                                                                {{ $leave->leavetype }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select> --}}
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="class_id">Class:</label>
+                                                        <select name="class_id" id="class_id">
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="comments">Comments:</label>
-                                                    <textarea class="form-control" id="comments" name="comments" rows="3"></textarea>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="address">Address:</label>
+                                                        <input type="text" name="address" class="form-control "
+                                                            id="address">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -131,15 +125,14 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-danger"
                                                 data-dismiss="modal">Close</button>
-                                            <button type="button" onclick="saveData('applyleaveForm','studentModal')"
+                                            <button type="button" onclick="saveData('addstudentModal','studentModal')"
                                                 class="btn btn-primary">Submit</button>
                                         </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
-                        <!-- end apply leave  modal -->
-                        <!-- start  subject modal -->
+
                         <div class="modal" id="subjectModal">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -152,14 +145,14 @@
                                     <!-- Modal body -->
                                     <form id="addsubjectForm" method="POST" enctype="multipart/form-data">
 
-                                        <input type="hidden" name="subject_id" id="subject_id">
+                                        {{-- <input type="hidden" name="subject_id" id="subject_id"> --}}
                                         <div class="modal-body">
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="name">subject:</label>
+                                                        <label for="name">Subject:</label>
                                                         <input type="text" name="name" class="form-control "
-                                                            id="name">
+                                                            id="subject_name">
                                                     </div>
                                                 </div>
                                             </div>
@@ -175,12 +168,83 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- end  subject modal -->
+
+                        <div class="modal" id="resultModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Add Result</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+
+                                    <!-- Modal body -->
+                                    <form id="addresultForm" method="POST" enctype="multipart/form-data">
+
+                                        <input type="hidden" name="result_id" id="result_id">
+                                        <div class="modal-body">
+                                            <div class="row">
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="student_id">Student:</label>
+                                                        <select name="student_id" id="student_id">
+                                                            @foreach ($studentlist as $student)
+                                                                <option value="{{ $student->id }}">
+                                                                    {{ $student->name }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="subject_id">Subject:</label>
+                                                        <select name="subject_id" id="subject_id">
+                                                            @foreach ($subjectlist as $subject)
+                                                                <option value="{{ $subject->id }}">
+                                                                    {{ $subject->name }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="class_id">Class:</label>
+                                                        <select name="class_id" id="class_id">
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="marks">Marks:</label>
+                                                        <input type="number" name="marks" class="form-control "
+                                                            id="marks">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger"
+                                                data-dismiss="modal">Close</button>
+                                            <button type="button" onclick="saveData('addresultForm','resultModal')"
+                                                class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        {{-- <script>
+        <script>
             $(document).ready(function() {
                 $.ajaxSetup({
                     headers: {
@@ -193,40 +257,30 @@
 
                 let url = '';
                 let formData = '';
-                if (formId == "EmployeeRegisterForm") {
-                    url = "{{ route('employee_store') }}";
+                if (formId == "addstudentModal") {
+                    url = "{{ route('student_store') }}";
                     formData = {
-                        employee_name: $("#employee_name").val(),
-                        employee_code: $("#register_employee_code").val(),
-                        username: $("#username").val(),
+                        name: $("#name").val(),
                         email: $("#email").val(),
-                        phone: $("#phone").val(),
-                        password: $("#password").val(),
+                        class_id: $("#class_id").val(),
                         address: $("#address").val(),
-                        country_id: $("#country_id").val(),
-                        state_id: $("#state_id").val(),
-                        city_id: $("#city_id").val(),
-                        zip: $("#zip").val(),
                     }
-                } else if (formId == "addleavetypeForm") {
+                } else if (formId == "addsubjectForm") {
                     url = "{{ route('store') }}";
                     formData = {
-                        leave_type: $("#register_leave_type").val(),
+                        name: $("#subject_name").val(),
                     }
-                } else if (formId == "applyleaveForm") {
-                    url = "{{ route('leaveapply_store') }}";
+                } else if (formId == "addresultForm") {
+                    url = "{{ route('result_store') }}";
                     formData = {
-                        leave_type: $("#leave_type").val(),
-                        employee_code: $("#employee_code").val(),
-                        from_date: $("#from_date").val(),
-                        to_date: $("#to_date").val(),
-                        comments: $("#comments").val(),
+                        marks: $("#marks").val(),
+                        subject_id: $("#subject_id").val(),
+                        class_id: $("#class_id").val(),
+                        student_id: $("#student_id").val(),
+
                     }
                 } else {
-                    url = "{{ route('holiday_store') }}";
-                    formData = {
-                        date: $("#date").val(),
-                    }
+                    return "something went wrongh";
                 }
 
                 console.log(" formId : ", formData);
@@ -240,10 +294,6 @@
                         if (data.status == "200") {
                             $("#" + modal).modal('hide');
                             toastr.success(data.message);
-
-                            // Harshbhai aaya reset nu joi le jo form
-                            // $("#formId")
-                            // form1.reset();
                             const form = document.getElementById(formId);
                             form.reset();
                             $('#table').DataTable().ajax.reload();
@@ -261,51 +311,6 @@
 
             }
 
-            $('#country_id').change(function(event) {
-                var countryid = this.value;
-                $('#state_id').html('');
-                $.ajax({
-                    url: "{{ route('api-fetch-state') }}",
-                    type: 'post',
-                    dataType: 'json',
-                    data: {
-                        country_id: countryid,
-                        _token: "{{ csrf_token() }}"
-                    },
-                    success: function(response) {
-                        $('#state_id').html('<option value=""> select state </option>');
-                        $.each(response.state, function(index, val) {
-                            $('#state_id').append('<option value="' + val.id + '"> ' +
-                                val.name + ' </option>')
-                        });
-                        $('#city_id').html('<option value=""> select city </option>');
-                    }
-                });
-                //alert(countryid);
-            });
-
-            $('#state_id').change(function(event) {
-                var stateid = this.value;
-                $('#city_id').html('');
-                $.ajax({
-                    url: "{{ route('api-fetch-city') }}",
-                    type: 'post',
-                    dataType: 'json',
-                    data: {
-                        state_id: stateid,
-                        _token: "{{ csrf_token() }}"
-                    },
-                    success: function(response) {
-                        $('#city_id').html('<option value=""> select City </option>');
-                        $.each(response.city, function(index, val) {
-                            $('#city_id').append('<option value="' + val.id + '"> ' +
-                                val.name + ' </option>')
-                        });
-
-                    }
-                });
-                //alert(countryid);
-            });
 
             $(function() {
                 $('#table').DataTable({
@@ -317,30 +322,25 @@
                             name: 'id'
                         },
                         {
-                            data: 'employeecode',
-                            name: 'employee_code'
+                            data: 'student_id',
+                            name: 'student_id'
                         },
                         {
-                            data: 'leavetype',
-                            name: 'leave_type'
+                            data: 'subject_id',
+                            name: 'subject_id'
                         },
                         {
-                            data: 'numberofDays',
-                            name: 'numberofDays'
+                            data: 'class_id',
+                            name: 'class_id'
                         },
                         {
-                            data: 'fromdate',
-                            name: 'from_date'
+                            data: 'marks',
+                            name: 'marks'
                         },
-                        {
-                            data: 'todate',
-                            name: 'to_date'
-                        }
-
 
                     ]
                 });
             });
-        </script> --}}
+        </script>
     </div>
 </x-app-layout>
